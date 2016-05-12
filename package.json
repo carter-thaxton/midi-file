@@ -1,7 +1,7 @@
 {
   "name": "midi-file",
   "version": "1.0.0",
-  "description": "Parse MIDI files",
+  "description": "Parse and write MIDI files",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
