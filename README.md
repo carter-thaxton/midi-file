@@ -33,5 +33,18 @@ fs.writeFileSync('copy_star_wars.mid', outputBuffer)
 
 The intermediate representation has a 'header' and 'tracks', and each track is an array of events.
 
-The output of writeMidi may not be exactly the same as the input, due to some ambiguities in the file format.  For example, the input may not have used running status bytes to compress consecutive events.  Also, some files use 0x90 noteOn messages with velocity 0 to mean noteOff, and others use 0x80.  These considerations could be provided as options in the future.
+### Explicit Formatting
 
+Options are provided to `writeMidi` to control various ambiguities in the MIDI file format.
+
+The following will use byte 0x09 for noteOff messages with velocity zero. (Typically such messages use 0x08).
+It will also use running status bytes to compress consecutive events when possible.
+
+```js
+var output = writeMidi(parsed, { useByte9ForNoteOff: true, running: true })
+```
+
+When parsing the file with `readMidi`, each compressed event using running status bytes will have a `running` flag set on it.
+Similarly, each `noteOff` event that was encoded using 0x09 will have a `byte9` property set on it.
+
+By default, `writeMidi` will defer to each event to indicate the behavior it should use for encoding such ambiguities, which will produce an exact copy of the original file read with `parseMidi`.  However, these options to `writeMidi` allow the behavior to be overridden at the top-level, which may be relevant if you are generating the MIDI events, rather than just reading them from a file.
