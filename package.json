@@ -1,6 +1,6 @@
 {
   "name": "midi-file",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Parse and write MIDI files",
   "main": "index.js",
   "scripts": {
