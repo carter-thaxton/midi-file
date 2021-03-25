@@ -25,7 +25,7 @@ var output = writeMidi(parsed)
 
 // Note that the output is simply an array of byte values.  writeFileSync wants a buffer, so this will convert accordingly.
 // Using native Javascript arrays makes the code portable to the browser or non-node environments
-var outputBuffer = new Buffer(output)
+var outputBuffer = Buffer.from(output)
 
 // Write to a new MIDI file.  it should match the original
 fs.writeFileSync('copy_star_wars.mid', outputBuffer)
