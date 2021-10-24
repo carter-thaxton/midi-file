@@ -1,11 +1,30 @@
 # midi-file
-```
-npm install midi-file
-```
+
+Install with `yarn add midi-file` or `npm install midi-file`.
 
 The parser is loosely based on [midi-file-parser](https://github.com/NHQ/midi-file-parser) and [jasmid](https://github.com/gasman/jasmid), but totally rewritten to use arrays instead of strings for portability.
 
-### Usage
+## Typescript Usage
+
+```Typescript
+import * as fs from 'fs';
+import * as midiManager from 'midi-file';
+
+// Read MIDI file into a buffer
+const input = fs.readFileSync('star_wars.mid');
+
+// Convert buffer to midi object
+const parsed = midiManager.parseMidi(input);
+
+// Convert object to midi buffer
+const output = midiManager.writeMidi(parsed);
+
+// Write into file
+const outputBuffer = Buffer.from(output);
+fs.writeFileSync('copy_star_wars.mid', outputBuffer);
+```
+
+## Raw Javascript Usage
 
 ```js
 var fs = require('fs')
@@ -33,7 +52,7 @@ fs.writeFileSync('copy_star_wars.mid', outputBuffer)
 
 The intermediate representation has a 'header' and 'tracks', and each track is an array of events.
 
-### Explicit Formatting
+## Explicit Formatting
 
 Options are provided to `writeMidi` to control various ambiguities in the MIDI file format.
 
