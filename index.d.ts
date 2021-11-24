@@ -9,7 +9,9 @@ declare module 'midi-file' {
         deltaTime: number;
         meta?: true;
         channel?: number;
-        type: "noteOn" | "noteOff" | "trackName" | "endOfTrack";
+        type: "noteOn" | "noteOff" | 
+        "trackName" | "endOfTrack" 
+        | "timeSignature" | "setTempo";
         noteNumber?: number;
         velocity?: number;
         text?: string;
