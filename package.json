@@ -8,7 +8,7 @@
     "test": "ts-node ./tests/tsd.ts"
   },
   "author": "Carter Thaxton",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carter-thaxton/midi-file.git"
